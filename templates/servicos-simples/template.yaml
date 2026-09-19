@@ -1,0 +1,74 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: servico-simples
+  title: Serviço simples (lab)
+  description: Cria um repositório com README, documentação e registro no catálogo
+  tags: [lab, recommended]
+spec:
+  owner: group:time-plataforma
+  type: service
+  parameters:
+    - title: Informações do serviço
+      required: [name, owner]
+      properties:
+        name:
+          title: Nome do serviço
+          type: string
+          pattern: '^[a-z0-9-]+$'
+          ui:help: Apenas letras minúsculas, números e hífen
+
+        description:
+          title: Descrição
+          type: string
+
+        owner:
+          title: Time dono
+          type: string
+          ui:field: OwnerPicker
+          ui:options:
+            catalogFilter:
+              kind: Group
+
+    - title: Repositório
+      required: [repoUrl]
+      properties:
+        repoUrl:
+          title: Onde criar o repositório
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts: [github.com]
+            allowedOwners: [<ORG_OU_USUARIO>]
+  steps:
+    - id: fetch
+      name: Gerar código a partir do skeleton
+      action: fetch:template
+      input:
+        url: ./skeleton
+        values:
+          name: ${{ parameters.name }}
+          description: ${{ parameters.description }}
+          owner: ${{ parameters.owner }}
+    - id: publish
+      name: Criar repositório no GitHub
+      action: publish:github
+      input:
+        repoUrl: ${{ parameters.repoUrl }}
+        description: ${{ parameters.description }}
+        defaultBranch: main
+        repoVisibility: public
+    - id: register
+      name: Registrar no catálogo
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
+        catalogInfoPath: /catalog-info.yaml
+  output:
+    links:
+      - title: Repositório
+        url: ${{ steps.publish.output.remoteUrl }}
+
+      - title: Abrir no catálogo
+        icon: catalog
+        entityRef: ${{ steps.register.output.entityRef }}
