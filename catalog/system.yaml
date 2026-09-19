@@ -1,7 +1,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
-  name: lab-rhdh
+  name: lab-rhdp
 description: Sistema de exemplo do laboratório
 spec:
   owner: group:time-plataforma
@@ -14,7 +14,7 @@ spec:
   type: openapi
   lifecycle: experimental
   owner: group:time-plataforma
-  system: lab-rhdh
+  system: lab-rhdp
   definition: |
     openapi: 3.0.0
       info:
