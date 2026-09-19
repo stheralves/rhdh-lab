@@ -7,4 +7,4 @@ spec:
     - ./org.yaml
     - ./system.yaml
     - ./hello-rhdh.yaml
-    - ../templates/serviços-simples/template.yaml
+    - ../templates/servicos-simples/template.yaml
