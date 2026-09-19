@@ -6,5 +6,5 @@ spec:
   targets:
     - ./org.yaml
     - ./system.yaml
-    - ./hello-rhdp.yaml
+    - ./hello-rhdh.yaml
     - ../templates/template.yaml
