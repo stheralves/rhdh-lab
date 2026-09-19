@@ -8,6 +8,7 @@ spec:
     appConfig:
       configMaps:
         - name: app-config-rhdh
+    dynamicPluginsConfigMapName: dynamic-plugins-rhdh
     extraEnvs:
       secrets:
         - name: secrets-rhdh
