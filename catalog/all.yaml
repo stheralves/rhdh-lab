@@ -7,4 +7,4 @@ spec:
     - ./org.yaml
     - ./system.yaml
     - ./hello-rhdp.yaml
-    - ../templates/servico-simples/template.yaml
+    - ../templates/template.yaml
