@@ -39,7 +39,7 @@ spec:
           ui:field: RepoUrlPicker
           ui:options:
             allowedHosts: [github.com]
-            allowedOwners: [<ORG_OU_USUARIO>]
+            allowedOwners: [stheralves]
   steps:
     - id: fetch
       name: Gerar código a partir do skeleton
