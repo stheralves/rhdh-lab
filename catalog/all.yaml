@@ -6,4 +6,4 @@ spec:
   targets:
     - ./org.yaml
     - ./system.yaml
-    - ./hello-rhdh.yaml
+    - ./hello-rhdp.yaml
