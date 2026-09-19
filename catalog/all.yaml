@@ -1,0 +1,9 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: rhdh-lab-catalog
+spec:
+  targets:
+    - ./org.yaml
+    - ./system.yaml
+    - ./hello-rhdh.yaml

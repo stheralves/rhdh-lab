@@ -1,0 +1,15 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: time-plataforma
+spec:
+  type: team
+  children: []
+  members: [stheralves]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: stheralves
+spec:
+  memberOf: [time-plataforma]

@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config-rhdh
+  namespace: rhdh-lab
+data:
+  app-config-rhdh.yaml: |
+    app:
+      title: Portal do Desenvolvedor - Lab
+      baseUrl: https://backstage-developer-hub-rhdh-lab.apps.cluster-2xw94.dyn.redhatworkshops.io
+    backend:
+      baseUrl: https://backstage-developer-hub-rhdh-lab.apps.cluster-2xw94.dyn.redhatworkshops.io
+      cors:
+        origin: https://backstage-developer-hub-rhdh-lab.apps.cluster-2xw94.dyn.redhatworkshops.io
+    auth:
+      externalAccess:
+      - type: legacy
+        options:
+          secret: ${BACKEND_SECRET}
+          subject: legacy-default-config
+    integrations:
+      github:
+        - host: github.com
+          token: ${GITHUB_TOKEN}
+    auth:
+      environment: production
+      providers:
+        github:
+          production:
+            clientId: ${AUTH_GITHUB_CLIENT_ID}
+            clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}
+            signIn:
+              resolvers:
+                - resolver: usernameMatchingUserEntityName
+        signInPage: github
+        catalog:
+          locations:
+            - type: url
+              target: https://github.com/stheralves/rhdh-lab/blob/main/catalog/all.yaml
+        rules:
+          - allow: [Location, Group, User, System, Domain, Component, API,Resource, Template]

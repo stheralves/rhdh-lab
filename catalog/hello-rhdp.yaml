@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: hello-rhdh
+  description: Aplicação de exemplo que roda no cluster
+  annotations:
+    backstage.io/kubernetes-id: hello-rhdh
+    backstage.io/kubernetes-namespace: rhdh-lab
+spec:
+  type: service
+  lifecycle: experimental
+  owner: group:time-plataforma
+  system: lab-rhdh
+  providesApis: [hello-api]

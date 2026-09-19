@@ -1,0 +1,28 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: lab-rhdh
+description: Sistema de exemplo do laboratório
+spec:
+  owner: group:time-plataforma
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: hello-api
+spec:
+  type: openapi
+  lifecycle: experimental
+  owner: group:time-plataforma
+  system: lab-rhdh
+  definition: |
+    openapi: 3.0.0
+      info:
+        title: Hello API
+        version: 1.0.0
+      paths:
+        /hello:
+          get:
+            responses:
+              '200':
+                description: OK
