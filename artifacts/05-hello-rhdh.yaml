@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-rhdh
+  namespace: rhdh-lab
+  labels:
+    app: hello-rhdh
+    backstage.io/kubernetes-id: hello-rhdh
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello-rhdh
+  template:
+    metadata:
+      labels:
+        app: hello-rhdh
+        backstage.io/kubernetes-id: hello-rhdh
+    spec:
+      containers:
+        - name: httpd
+          image: registry.access.redhat.com/ubi9/httpd-24
+          ports:
+            - containerPort: 8080
