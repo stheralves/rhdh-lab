@@ -37,4 +37,34 @@ data:
         - type: url
           target: https://github.com/stheralves/rhdh-lab/blob/main/catalog/all.yaml
       rules:
-        - allow: [Location, Group, User, System, Domain, Component, API, Resource, Template]
+        - allow:
+            [
+              Location,
+              Group,
+              User,
+              System,
+              Domain,
+              Component,
+              API,
+              Resource,
+              Template
+            ]
+    kubernetes:
+      serviceLocatorMethod:
+        type: multiTenant
+      clusterLocatorMethods:
+        - type: config
+          clusters:
+            - name: lab
+              url: https://kubernetes.default.svc
+              authProvider: serviceAccount
+              skipTLSVerify: true
+              serviceAccountToken: ${K8S_SA_TOKEN}
+    permission:
+      enabled: true
+    rbac:
+      admin:
+        users:
+          - name: user:default/stheralves
+      policies-csv-file: /opt/app-root/src/rbac/rbac-policy.csv
+      policyFileReload: true
