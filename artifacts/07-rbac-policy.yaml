@@ -14,3 +14,5 @@ data:
     p, role:default/desenvolvedor, scaffolder-action, use, allow
     p, role:default/desenvolvedor, scaffolder.task.read, read, allow
     p, role:default/desenvolvedor, scaffolder.task.create, create, allow
+    g, group:default/general-view, role:default/leitor
+    g, group:default/time-desenvolvimento, role:default/desenvolvedor
