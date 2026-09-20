@@ -13,3 +13,10 @@ metadata:
   name: stheralves
 spec:
   memberOf: [time-plataforma]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: user1
+spec:
+  memberOf: [time-plataforma]

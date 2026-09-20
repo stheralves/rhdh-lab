@@ -18,6 +18,8 @@ data:
           token: ${GITHUB_TOKEN}
     auth:
       environment: production
+      session:
+        secret: ${AUTH_SESSION_SECRET}
       externalAccess:
         - type: legacy
           options:
@@ -31,7 +33,17 @@ data:
             signIn:
               resolvers:
                 - resolver: usernameMatchingUserEntityName
-    signInPage: github
+        catalog:
+        oidc:
+          production:
+            metadataUrl: ${RHBK_BASE_URL}/realms/${RHBK_REALM}/.well-known/openid-configuration
+            clientId: ${RHBK_CLIENT_ID}
+            clientSecret: ${RHBK_CLIENT_SECRET}
+            prompt: auto
+            signIn:
+              resolvers:
+                - resolver: preferredUsernameMatchingUserEntityName
+    signInPage: oidc
     catalog:
       locations:
         - type: url
@@ -62,9 +74,10 @@ data:
               serviceAccountToken: ${K8S_SA_TOKEN}
     permission:
       enabled: true
-    rbac:
-      admin:
-        users:
-          - name: user:default/stheralves
-      policies-csv-file: /opt/app-root/src/rbac/rbac-policy.csv
-      policyFileReload: true
+      rbac:
+        admin:
+          users:
+            - name: user:default/stheralves
+            - name: user:default/user1
+        policies-csv-file: /opt/app-root/src/rbac/rbac-policy.csv
+        policyFileReload: true

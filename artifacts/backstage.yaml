@@ -12,6 +12,10 @@ spec:
     extraEnvs:
       secrets:
         - name: secrets-rhdh
+    extraFiles:
+      mountPath: /opt/app-root/src/rbac
+      configMaps:
+        - name: rbac-policy
     route:
       enabled: true
   database:

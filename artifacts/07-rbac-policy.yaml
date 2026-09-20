@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rbac-policy
+  namespace: rhdh-lab
+data:
+  rbac-policy.csv: |
+    p, role:default/leitor, catalog-entity, read, allow
+    p, role:default/desenvolvedor, catalog-entity, read, allow
+    p, role:default/desenvolvedor, catalog.entity.create, create, allow
+    p, role:default/desenvolvedor, catalog.location.read, read, allow
+    p, role:default/desenvolvedor, catalog.location.create, create, allow
+    p, role:default/desenvolvedor, scaffolder-template, read, allow
+    p, role:default/desenvolvedor, scaffolder-action, use, allow
+    p, role:default/desenvolvedor, scaffolder.task.read, read, allow
+    p, role:default/desenvolvedor, scaffolder.task.create, create, allow
