@@ -4,7 +4,6 @@ metadata:
   name: rhdh-lab-catalog
 spec:
   targets:
-    - ./org.yaml
     - ./system.yaml
     - ./hello-rhdh.yaml
     - ../templates/servicos-simples/template.yaml
